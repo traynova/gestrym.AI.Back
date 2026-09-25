@@ -1,0 +1,16 @@
+networks:
+  gestrym-network:
+    external: true
+
+services:
+  gestrym-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${AI_IMAGE:-jhonnier/back-ai:${VERSION:-1.0.0}}
+    container_name: gestrym-ai
+    restart: always
+    env_file:
+      - stack.env
+    networks:
+      - gestrym-network
